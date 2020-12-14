@@ -2,8 +2,8 @@
 # 中后台搭建系统 - 麻鸡
 
 
-## 一、产品介绍
-为什么叫麻鸡？因为我们都在云集里做鸡！
+## 前言
+为什么叫麻鸡？因为我们都在云集里养鸡！
 
 表单列表天天写，没提升又没技术产出？组件库生态早已成熟，砸了再造？
 
@@ -27,6 +27,10 @@
 **文档地址**
   - [项目介绍](https://www.jianshu.com/p/1403b8704b8a)
 #
+**效果演示**
+
+![image](https://6e6f-node-generate-7glxke4qc18d7586-1254201734.tcb.qcloud.la/ww.gif?sign=d1bad35d9e54939b5f5cd8e66d7d079b&t=1607937851)
+
 
 ## Quick Start
 ``` shell
@@ -38,6 +42,9 @@ yarn serve
 yarn build
 ```
 
+## 交流群
+
+![image](https://6e6f-node-generate-7glxke4qc18d7586-1254201734.tcb.qcloud.la/wx.png?sign=ede01018f2fa98bbdc58c887aa692523&t=1607938987)
 
 
 ## LICENSE
