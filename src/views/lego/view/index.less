@@ -1,0 +1,40 @@
+@import '~styles/var.less';
+.preview-box {
+  margin: 0 10px;
+  background: #fff;
+  position: relative;
+  border: 0;
+  padding: 12px;
+  &-item{
+    display: block;
+    border: 0
+  }
+  &.hasAtract{
+    margin-bottom: 80px;
+  }
+  &.isEdit{
+    .search-more{
+      .el-button{
+        margin-top: 5px !important;
+      }
+    }
+  }
+}
+.attract-bottom{
+  position: fixed;
+  height: 60px;
+  background-color: #fff;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transition: .4s;
+  justify-content: center;
+  align-items: center;
+  display: -webkit-flex;
+  z-index: 10;
+  box-shadow: 10px 0px 10px #e5e5e5;
+}
+
+.el-input-number.is-without-controls .el-input__inner {
+  text-align: left;
+}

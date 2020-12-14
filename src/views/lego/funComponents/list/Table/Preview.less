@@ -1,0 +1,44 @@
+
+@import '~styles/var';
+.preview-table{
+  .lego-table-button-color{
+    &.danger{
+      color: @color-warning
+    }
+  }
+  .file-upload{
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .button-box{
+    .file-upload:nth-child(1){
+      margin-left: 0
+    }
+  }
+  .is-link{
+    color: @color-primary;
+    cursor: pointer;
+  }
+  &-title-top{
+    font-weight: bold;
+    color: #212121;
+    font-size: 16px
+  }
+  &-title-left{
+    line-height: 32px;
+    width: 100px;
+    text-align: right;
+    vertical-align: middle;
+    float: left;
+    color: #606266;
+    line-height: 40px;
+    padding: 0 4px 0 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 12px;
+    color: inherit;
+  }
+  &-title-left-content{
+    margin-left: 100px;
+  }
+}

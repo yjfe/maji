@@ -1,0 +1,67 @@
+<!--
+ * @Description: 
+ * @Author: yamanashi12
+ * @Date: 2019-05-10 10:18:19
+ * @LastEditTime: 2020-06-18 15:21:48
+ * @LastEditors: Please set LastEditors
+ -->
+<template>
+  <el-form label-width="90px" :rules="rules" :model="item" ref="form">
+    <ComponentFormHeadTabs>
+      <template slot="base">
+        <FoldWraper label="基础信息" :level="1">
+          <el-form-item label="名称：" prop="label">
+            <el-input v-model="item.label" />
+          </el-form-item>
+          <el-form-item label="缺省文本：" prop="errorMsg">
+            <el-input v-model="item.errorMsg" />
+          </el-form-item>
+        </FoldWraper>
+        <slot />
+      </template>
+      <template slot="styles">
+        <FoldWraper label="样式配置" :level="1">
+          <el-form-item label="宽度：" prop="width">
+            <el-input v-model="item.width" />
+          </el-form-item>
+          <el-form-item label="高度：" prop="height">
+            <el-input v-model="item.height" />
+          </el-form-item>
+          <el-form-item label="间距：" prop="gap">
+            <el-input-number :min="0" :controls="false" :precision="0" :step="1" v-model.number="item.maxNum" /> kb
+          </el-form-item>
+        </FoldWraper>
+      </template>
+      <template slot="data">
+        <FoldWraper label="数据配置" :level="1">
+          <el-form-item label="字段名：" prop="key">
+            <el-input v-model.trim="item.key" />
+          </el-form-item>
+        </FoldWraper>
+      </template>
+      <template slot="event">
+        <CodePointEvent :data="item" :event="['componentCreated', 'componentWillDestroy']"></CodePointEvent>
+      </template>
+    </ComponentFormHeadTabs>
+  </el-form>
+</template>
+<script>
+import baseData from './data'
+
+export default {
+  name: 'DetailImgForm',
+  data() {
+    return {
+      rules: baseData.rules
+    }
+  },
+  props: {
+    item: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  }
+}
+</script>

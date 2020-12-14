@@ -1,0 +1,72 @@
+@import '~styles/var.less';
+.preview-box {
+  flex: 1;
+  margin: 0 10px;
+  height: calc(100vh - 65px);
+  overflow-x: auto;
+  background: #fff;
+  position: relative;
+  border: 1px solid #eeeef2;
+  padding: 12px;
+  &-item{
+    display: block;
+    border: 1px solid transparent;
+    position: relative;
+    min-height: 20px;
+    &__remove{
+      display: none;
+      position: absolute;
+      right: -6px;
+      top: -6px;
+      width: 12px;
+      height: 12px;
+      line-height: 12px;
+      border-radius: 12px;
+      text-align: center;
+      background: @color-warning;
+      color: @color-white;
+      z-index: 10;
+    }
+    &__id{
+      display: none;
+      position: absolute;
+      right: 10px;
+      top: 0x;
+      // height: 12px;
+      line-height: 12px;
+      padding: 1px 2px;
+      text-align: center;
+      background: @color-black-base;
+      color: @color-white;
+      z-index: 10;
+    }
+    &:hover{
+      .preview-box-item__id{
+        display: block;
+      }
+      border: 1px dashed @color-title;
+    }
+  }
+  .preview-active{
+    border: 1px dashed @color-primary;
+    .preview-box-item__remove{
+      display: block;
+    }
+  }
+  &.isEdit{
+    .el-form-item--mini.el-form-item, .el-form-item--small.el-form-item{
+      margin-bottom: 0px;
+      padding: 5px 0;
+    }
+    .preview-box-item{
+      margin-bottom: 0px;
+    }
+  }
+  .default-text{
+    margin: 8px;
+    padding: 5px;
+    height: 26px;
+    line-height: 16px;
+    background: @border-color-hover
+  }
+}

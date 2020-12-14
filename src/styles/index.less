@@ -1,0 +1,134 @@
+@import './var.less';
+@import './@element-ui.less';
+
+html, body{
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: 'PingFang SC','STHeitiSC-Light','Helvetica-Light',arial,sans-serif;
+}
+*{
+  box-sizing: border-box;
+}
+.user-name{
+  cursor: pointer;
+}
+.user-dropdown-menu{
+  width:120px;
+  .iconfont{
+    margin-right:5px;
+  }
+}
+
+.el-breadcrumb__inner a, .el-breadcrumb__inner.is-link {
+  color: #636970;
+}
+.el-breadcrumb__item:last-child .el-breadcrumb__inner, .el-breadcrumb__item:last-child .el-breadcrumb__inner a, .el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover, .el-breadcrumb__item:last-child .el-breadcrumb__inner:hover {
+  color: #333333;
+}
+
+.button-box{
+  margin-bottom: 15px
+}
+
+.font-styles(@fontSize, @color) {
+  font-size: @fontSize;
+  color: @color;
+}
+
+.font-title {
+  .font-styles(16px, @color-black);
+  font-weight: bold;
+}
+.font-title-sub {
+  .font-styles(14px, @color-black);
+  font-weight: bold;
+}
+.font-text-buttton {
+  .font-styles(14px, @color-primary);
+}
+.font-text {
+  .font-styles(12px, @color-black);
+}
+.font-text-sub {
+  .font-styles(14px, @color-black-base);
+}
+.font-table-header {
+  .font-styles(12px, #636970);
+}
+
+.el-form-item .tip{
+  margin-left: 10px;
+}
+.c-error{
+  color: @color-error
+}
+.c-primary{
+  color: @color-success
+}
+
+.lego-button-color-select{
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  margin-right: 5px;
+  border: 1px solid @color-table-td;
+  &.primary{
+    background: @color-primary
+  }
+  &.success{
+    background: @color-success
+  }
+  &.warning{
+    background: @color-error
+  }
+  &.danger{
+    background: @color-warning
+  }
+  &.info{
+    background: #606266
+  }
+  &.default{
+    background: @color-white
+  }
+}
+
+.search-more {
+  display: contents;
+  .el-button{
+    margin-bottom: 18px;
+  }
+  &-toggle {
+    display: inline-block;
+    margin-right: 20px;
+    color: @color-primary;
+    line-height: 32px;
+    position: relative;
+    margin-left: 20px;
+    &::after {
+      content: '';
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      width: 0;
+      height: 0;
+      margin-top: -2px;
+      border-right: 4px transparent solid;
+      border-left: 4px transparent solid;
+      border-top: 5px @color-primary solid;
+    }
+    &.is-open {
+      &::after {
+        border-top: 0;
+        border-bottom: 5px @color-primary solid;
+      }
+    }
+  }
+}
+.preview-box.isEdit{
+  .search-more{
+    .el-button, .search-more-toggle{
+      margin-top: 5px !important;
+    }
+  }
+}

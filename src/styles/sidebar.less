@@ -1,0 +1,60 @@
+@import '~styles/var.less';
+@font-color: #A8A8A8;
+@font-color-active: #ffffff;
+@sidebar-background: #2B2D31;
+@sidebar-background-logo: #2B2D31;
+@sidebar-background-show: #27292D;
+@sidebar-background-active: #3A88FF;
+.sidebar {
+  background: @sidebar-background !important;
+  .sidebar--logo{
+    background: @sidebar-background-logo;
+    span  {
+      color: @color-white;
+    }
+  }
+  .el-menu {
+    background: @sidebar-background !important;
+    &-item {
+      color: @font-color;
+      background: @sidebar-background-show;
+      &:hover {
+        background: @sidebar-background-active;
+        color: @font-color-active;
+      }
+      &.is-active {
+        color: @font-color-active;
+        background: @sidebar-background-active;
+      }
+    }
+    .router-link-active {
+      color: @font-color-active;
+      background: @sidebar-background-active;
+      &:hover {
+        background: @sidebar-background-active;
+      }
+    }
+  }
+  .el-submenu{
+    &:hover .el-submenu__title {
+      background: @sidebar-background-active;
+    }
+    &__title {
+      color: @font-color;
+      background: @sidebar-background;
+      i{
+        color: @font-color
+      }
+    }
+    &.is-opened{
+      background: @sidebar-background-show;
+      > .el-submenu__title{
+        color: @font-color-active;
+        background: @sidebar-background-show;
+        i{
+          color: @font-color-active;
+        }
+      }
+    }
+  }
+}

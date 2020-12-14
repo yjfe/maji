@@ -1,0 +1,19 @@
+.cellbox {
+  display:table;
+  width: 100%;
+  &.cellbox-middle{
+    .cell-item{
+      vertical-align:middle;
+    }
+  }
+  .cell-item {
+    display:table-cell;
+    vertical-align: top;
+  }
+  .cell-item:first-child{
+    padding-left:0!important;
+  }
+  .cell-item:last-child{
+    padding-right:0!important;
+  }
+}

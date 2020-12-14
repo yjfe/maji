@@ -1,0 +1,177 @@
+
+@import '~styles/var';
+.img-group-upload {
+  margin-bottom: 10px;
+  .el-upload--picture-card {
+    border-radius: 3px;
+    border: 0;
+    background: transparent;
+  }
+}
+.img-group-add {
+  border: 1px dashed @border-color-base;
+  display: inline-block;
+  height: 150px;
+  width: 150px;
+  vertical-align: top;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  &:hover {
+    // border-color: @color-primary;
+    .el-icon-plus {
+      font-size: 28px;
+      color: @color-primary;
+    }
+  }
+  button {
+    border: 0;
+    outline: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    cursor: pointer;
+    .el-icon-plus {
+      font-size: 28px;
+      color: #8c939d;
+    }
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}
+.img-group {
+  &-upload {
+    margin-top: 10px;
+    .el-upload-list {
+      display: none;
+    }
+    .avatar-uploader {
+      margin-bottom: 10px;
+    }
+  }
+  &-item {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    border: 1px solid @border-color-base;
+    vertical-align: middle;
+    overflow: hidden;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    position: relative;
+    button {
+      border: 0;
+      background: transparent;
+      height: 100%;
+      width: 100%;
+      outline: none;
+      padding: 0;
+    }
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .el-icon-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      color: #fff;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease 0s;
+      &:before {
+        z-index: 100;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+      }
+      &:after {
+        border: 18px solid transparent;
+        content: '';
+        right: 0;
+        top: 0;
+        position: absolute;
+        border-top-color: #999;
+        border-right-color: #999;
+      }
+      &:hover {
+        &:after {
+          border-top-color: #ff4949;
+          border-right-color: #ff4949;
+        }
+      }
+    }
+    .el-icon-arrow-left,
+    .el-icon-arrow-right {
+      position: absolute;
+      display: none;
+      z-index: 100;
+      top: 50%;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 20px;
+      background: @color-black;
+      color: @color-white;
+      transform: translateY(-50%);
+    }
+    .el-icon-arrow-left {
+      left: 10px;
+    }
+    .el-icon-arrow-right {
+      right: 10px;
+    }
+    .item-reload {
+      cursor: pointer;
+      position: absolute;
+      display: none;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      color: #fff;
+      background: @color-primary;
+    }
+    &:hover {
+      .el-icon-arrow-left,
+      .el-icon-arrow-right {
+        display: block;
+      }
+      .el-icon-close {
+        top: 0;
+        right: 0;
+      }
+      .item-reload {
+        display: block;
+      }
+    }
+    &.error {
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+      }
+      &::after {
+        content: '上传失败';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        color: #fff;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}

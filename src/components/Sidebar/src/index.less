@@ -1,0 +1,152 @@
+@import '~styles/var.less';
+@font-color: #fff;
+@sidebar-background: #358BCC;
+@sidebar-background-show: #358BCC;
+@sidebar-background-active: #2A75AD;
+
+.sidebar {
+  background: @sidebar-background !important;
+  height: 100vh;
+  width: 180px;
+  transition: .3s;
+  &.layoutGrid{
+    width: 64px;
+    .sidebar--logo{
+      text-align: center;
+      span  {
+        display: none
+      }
+    }
+  }
+  .sidebar--logo{
+    height: 50px;
+    overflow: hidden;
+    background: #284D68;
+    .middle{
+      height: 50px;
+      width: 100%;
+      padding: 0 10px;
+      display: table;
+      text-decoration:none;
+    }
+    .logo{
+      width: 30px;
+      height: 30px;
+      margin: 0 auto;
+      text-align: center;
+      display: table-cell;
+      vertical-align: middle;
+      img{
+        width: 30px;
+        height: 30px;
+        transform: translateY(2px)
+      }
+    }
+    span  {
+      font-size: 16px;
+      padding-left: 5px;
+      white-space : nowrap;
+      display: table-cell;
+      vertical-align: middle;
+      color: @color-white;
+      line-height: 50px;
+    }
+  }
+  .el-menu {
+    background: @sidebar-background !important;
+    border-radius: 0;
+    border-right: 0;
+    text-align: center;
+    &-item {
+      height: 40px;
+      line-height: 40px;
+      color: @font-color;
+      padding-right: 15px;
+      width: 100%;
+      background: @sidebar-background-show;
+      min-width: 100px;
+      text-align: left;
+      &:hover {
+        background: @sidebar-background-active;
+      }
+      &.is-active {
+        color: @color-white;
+        background: @sidebar-background-active;
+      }
+    }
+    .router-link-active {
+      color: @color-white;
+      background: @sidebar-background-active;
+      &:hover {
+        background: @sidebar-background-active;
+      }
+    }
+  }
+  .el-submenu{
+    &__title {
+      color: @font-color;
+      font-size: 14px;
+      text-align: left;
+      height: 48px;
+      line-height: 48px;
+      background: @sidebar-background;
+      i{
+        color: @font-color
+      }
+      &:hover {
+        background: @sidebar-background-active !important;
+      }
+    }
+    &__icon-arrow{
+      margin-top: -3px;
+    }
+    &.is-opened{
+      background: @sidebar-background-show;
+      > .el-submenu__title{
+          background: @sidebar-background-show;
+        .el-submenu__icon-arrow{
+          margin-top: -5px;
+        }
+      }
+    }
+  }
+  .item .el-badge__content.is-fixed {
+    top: 20px;
+    right: 0px;
+    position: absolute;
+    transform: translateY(-50%) translateX(100%);
+    text-align: center;
+  }
+  &--search{
+    margin: 10px;
+    .el-input{
+      .el-input__icon{
+        color: rgba(255, 255, 255, 0.3)
+      }
+      .el-input__inner{
+        background: @sidebar-background;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: rgba(255, 255, 255, 0.3);
+        &:hover, &:active, &:focus{
+          color: @color-white;
+          border-color: @color-white;
+          & + .el-input__prefix .el-input__icon{
+            color: @color-white !important
+          }
+          .el-input__suffix-inner .el-input__icon{
+            color: @color-white !important
+          }
+        }
+      }
+      &:hover {
+        .el-input__icon {
+          color: @color-white !important
+        }
+      }
+    }
+    .hasShow{
+      color: @color-white
+    }
+  }
+  @import '~styles/sidebar';
+}

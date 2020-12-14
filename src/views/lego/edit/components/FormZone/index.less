@@ -1,0 +1,94 @@
+@import '~styles/var';
+.form-zone{
+  width: 500px;
+  height: calc(100vh - 65px);
+  // background: #fff;
+  overflow-y: auto;
+  position: relative;
+
+  &__content{
+    height: calc(100% - 41px);
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+  }
+  &__setting{
+    border-bottom: 10px solid @color-background;
+    padding: 12px;
+  }
+  &__form{
+    background: #fff;
+    padding: 0 12px 12px;
+  }
+  .fun-group{
+    width: 300px;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0;
+    padding-right: 0;
+    .el-input{
+      width: 80px;
+      &:first-child{
+        margin-right: 10px;
+      }
+    }
+    .el-checkbox{
+      margin-left: 5px;
+      margin-right: 0;
+      .el-checkbox__label{
+        padding-left: 0
+      }
+    }
+    .el-radio{
+      margin-left: 5px;
+      margin-right: 0;
+      .el-radio__label{
+        padding-left: 0
+      }
+      & + .el-radio {
+        margin-left: 0;
+      }
+    }
+  }
+  .group-table{
+    margin-top: 10px
+  }
+  .el-input__inner, .el-textarea__inner{
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .row-form {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    &__type{
+      .el-input__inner{
+        padding-left: 28px;
+      }
+    }
+    &__col{
+      width: 50px;
+      margin-right: 5px;
+    }
+    &__add{
+      min-width: 50px;
+    }
+    .group-item{
+      padding-left: 0 !important;
+    }
+  }
+  &__tabs{
+    // margin: 10px 20px 0;
+    margin-bottom: 0;
+    background: #fff;
+    .el-tabs__header{
+      margin-bottom: 0;
+    }
+  }
+  &__comId{
+    padding: 10px 0px 10px 0;
+  }
+  .go-back{
+    position: absolute;
+    right: 10px;
+    top: 6px;
+  }
+}

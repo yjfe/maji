@@ -1,0 +1,6 @@
+node_modules
+babel.config.js
+build
+# 文件夹
+# src/
+zh_CN.js
