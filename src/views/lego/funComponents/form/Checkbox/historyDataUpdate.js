@@ -10,6 +10,7 @@ export default function (data = {}) {
   // 直接对原数据做处理
   // 需要是数字还是字符串
   const formatValue = (value, type) => {
+    if (value === undefined || value === '') return value
     if (type === 'number') {
       return parseInt(value, 10)
     }

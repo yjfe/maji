@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-12-08 11:00:10
+ * @LastEditTime: 2020-12-15 14:47:01
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -180,6 +180,7 @@ export default {
   margin-bottom: 15px;
   .el-form-item--mini.el-form-item, .el-form-item--small.el-form-item{
     max-height: 33px;
+    height: 33px;
     overflow: hidden;
   }
   .el-form-item__content{
@@ -199,6 +200,13 @@ export default {
     .el-form-item--mini.el-form-item, .el-form-item--small.el-form-item{
       max-height: 37px;
       overflow: hidden;
+    }
+  }
+}
+.isEdit{
+  .lego-search{
+    .el-form-item--mini.el-form-item, .el-form-item--small.el-form-item{
+      height: auto;
     }
   }
 }

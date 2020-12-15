@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-08-20 14:53:06
- * @LastEditTime: 2020-12-01 15:11:19
+ * @LastEditTime: 2020-12-15 14:15:15
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -121,7 +121,6 @@ export default {
     setDetails(jsonStr, pageId = 'preview') {
       try {
         const { idModule, floorList, pagesModuleId } = JSON.parse(jsonStr)
-        
         this.dislogIds = Object.keys(idModule)
         // 模块数据增加当前页面的id
         Object.keys(idModule).forEach(item => Object.assign(idModule[item], {
@@ -130,6 +129,7 @@ export default {
         }))
         // 存入vuex
         this.$store.dispatch('manage/addModules', formRules.addFormRules(idModule))
+        console.log(JSON.parse(JSON.stringify({ ...idModule })))
         this.floorList = floorList
         this.pagesModule = idModule[pagesModuleId]
         this.pagesModule.pageId = this.pageId

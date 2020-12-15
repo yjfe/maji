@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-03-01 16:20:12
- * @LastEditTime: 2020-12-10 16:01:32
+ * @LastEditTime: 2020-12-15 15:23:35
  * @LastEditors: Please set LastEditors
  */
 // vue.config.js
@@ -31,7 +31,7 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       '/api': {
-        target: '', // 代理域名
+        target: 'www.test.com', // 代理域名
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

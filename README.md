@@ -7,7 +7,7 @@
 
 表单列表天天写，没提升又没技术产出？组件库生态早已成熟，砸了再造？
 
-麻鸡是在vue上的一个中后台页面搭建解决方案，已经在云集落地应用了一年多，承接需求近200个页面，综合提效70%。
+麻鸡是一个基于vue框架搭建中后台页面的解决方案，已经在云集落地应用了一年多，承接需求近200个页面，综合提效70%。
 
 #
 **麻鸡的优势：**
@@ -25,11 +25,12 @@
 # 
 
 **文档地址**
-  - [项目介绍](https://www.jianshu.com/p/1403b8704b8a)
+  - [项目介绍](https://juejin.cn/post/6906032587606196237)
+  - [演示地址](https://node-generate-7glxke4qc18d7586-1254201734.tcloudbaseapp.com/login)
 #
 **效果演示**
 
-![image](https://6e6f-node-generate-7glxke4qc18d7586-1254201734.tcb.qcloud.la/ww.gif?sign=d1bad35d9e54939b5f5cd8e66d7d079b&t=1607937851)
+![image](https://6a69-jimu-2gl8kx5o12ba8d32-1304412608.tcb.qcloud.la/maji/Lark20201214-175305.gif)
 
 
 ## Quick Start
@@ -44,7 +45,7 @@ yarn build
 
 ## 交流群
 
-![image](https://6e6f-node-generate-7glxke4qc18d7586-1254201734.tcb.qcloud.la/wx.png?sign=ede01018f2fa98bbdc58c887aa692523&t=1607938987)
+![image](https://6a69-jimu-2gl8kx5o12ba8d32-1304412608.tcb.qcloud.la/maji/Lark20201214-175354.png)
 
 
 ## LICENSE

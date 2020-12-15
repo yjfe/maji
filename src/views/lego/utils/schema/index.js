@@ -39,12 +39,14 @@ class Schema {
   
   schemaObject(rule = {}, data) {
     rule = this.ruleType(rule)
-    if (formatType(data) === 'object' && rule.children) {
-      Object.keys(rule.children).forEach((key) => {
-        const ruleItem = rule.children[key]
-        const dataItem = data[key]
-        data[key] = this.schemaContext(ruleItem, dataItem)
-      })
+    if (formatType(data) === 'object') { 
+      if (rule.children) {
+        Object.keys(rule.children).forEach((key) => {
+          const ruleItem = rule.children[key]
+          const dataItem = data[key]
+          data[key] = this.schemaContext(ruleItem, dataItem)
+        })
+      }
       return data
     }
     return rule.default || {}
