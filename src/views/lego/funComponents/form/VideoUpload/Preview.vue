@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-12-02 16:44:08
+ * @LastEditTime: 2021-01-20 15:41:39
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -21,9 +21,11 @@
 // TODO: parentData 还没做完
 import VideoUpload from '@/components/VideoUpload'
 import { useCodeEvent } from '@/views/lego/utils'
+import formMixin from '@/views/lego/utils/formMixin'
 
 export default {
   name: 'VideoUploadPreview',
+  mixins: [formMixin],
   components: { VideoUpload },
   props: {
     item: {

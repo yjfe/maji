@@ -8,6 +8,7 @@
       <el-form-item prop="password" label="密 码：">
         <el-input type="password" v-model="form.password" :maxlength="10" numberWord></el-input>
       </el-form-item>
+      <span class="tips">测试账号： testadmin 123456</span>
       <el-button class="login-submit" type="primary" native-type="submit" @click.native.prevent="submit">确 定</el-button>
       <el-button class="login-text" type="text" @click.native.prevent="$router.push('/register')">未有账号，前往注册</el-button>
     </el-form>

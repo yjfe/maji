@@ -2,13 +2,13 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-12-02 16:52:36
+ * @LastEditTime: 2021-01-20 18:25:11
  * @LastEditors: Please set LastEditors
  -->
 <template>
-  <el-form-item  :prop="propKey"  :label="`${item.label}：`" :rules="item.validator.rules">
+  <el-form-item  :prop="propKey" :label="`${item.label}：`" :rules="item.validator.rules">
     <el-cascader 
-      :value="mValue"
+      value="mValue"
       @input="mHandelInput" 
       :disabled="$attrs.isFormEdit && item.editDisabled"
       :props="cascaderProps"></el-cascader>

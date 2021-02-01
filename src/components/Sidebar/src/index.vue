@@ -2,17 +2,16 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2018-10-29 16:30:28
- * @LastEditTime: 2020-12-09 16:16:37
+ * @LastEditTime: 2021-02-01 11:03:19
  * @LastEditors: Please set LastEditors
  -->
 <template>
   <div class="sidebar" :class="{ layoutGrid: !layoutGrid }">
     <div class="sidebar--logo">
       <router-link class="middle" to="/">
-        <div class="logo" v-if="$slots.logo || logo">
-          <slot v-if="$slots.logo" name="logo"></slot>
-          <img v-else-if="logo" :src="logo"/>
-        </div>
+        <div class="logo"
+          ><slot v-if="$slots.logo" name="logo"></slot><img v-else :src="logo"
+        /></div>
         <span>{{ title }}</span>
       </router-link>
     </div>
@@ -38,6 +37,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import SubmenuItem from './SubmenuItem'
+// import point from '@/utils/point/thinkingReport'
 
 export default {
   componentName: 'Sidebar',
@@ -67,9 +67,9 @@ export default {
   },
   data() {
     return {
+      logo: '',
       searchText: '',
-      hasShow: true,
-      logo: ''
+      hasShow: true
     }
   },
   errorCaptured() {
@@ -95,11 +95,21 @@ export default {
     }
   },
   methods: {
-    handleSelect(key) {
-      this.$router.push(
-        { path: key },
-        () => {}
-      )
+    handleSelect(key, route, $e) {
+      const { item } = $e.$attrs
+      // 埋点
+      if (item.iframe) {
+        // 判断是旧页面使用iframe打开
+        this.$router.push({
+          path: 'iframe',
+          query: {
+            src: key,
+            title: item.menuName
+          }
+        })
+      } else {
+        this.$router.push({ path: key })
+      }
     },
     /**
      * @description: 处理所有搜索显示隐藏

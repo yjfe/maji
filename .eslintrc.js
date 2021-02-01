@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-18 16:00:30
- * @LastEditTime: 2020-11-10 16:18:11
+ * @LastEditTime: 2021-01-21 11:08:11
  * @LastEditors: Please set LastEditors
  */
 module.exports = {
@@ -33,7 +33,8 @@ module.exports = {
     'global-require': 0,  // 关闭禁止使用requrie
     'prefer-promise-reject-errors':0, // 这条规则旨在确保承诺只被Error对象拒绝。
     "import/extensions": "off", // 禁用文件名详细文件类型后缀
-    "max-lines": [1, 500]
+    "max-lines": [1, 500],
+    "no-empty": 0 // 方法内容为空
   },
   parserOptions: {
     parser: 'babel-eslint'

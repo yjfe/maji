@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-12-02 16:39:10
+ * @LastEditTime: 2021-01-20 15:45:15
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -26,6 +26,7 @@
 </template>
 <script>
 // TODO: fileUpload 还没做完
+import formMixin from '@/views/lego/utils/formMixin'
 import FileUpload from '@/components/FileUpload'
 import { apiResolver } from '@/views/lego/utils/apiResolver'
 import { useCodeEvent } from '@/views/lego/utils'
@@ -33,6 +34,7 @@ import { useCodeEvent } from '@/views/lego/utils'
 export default {
   name: 'FileUploadPreview',
   components: { FileUpload },
+  mixins: [formMixin],
   props: {
     item: {
       type: Object,
@@ -48,8 +50,12 @@ export default {
   },
   computed: {
     action() {
-      const { url } = apiResolver(this.item.apiUrl)
-      return url
+      try {
+        const { url } = apiResolver(this.item.apiUrl)
+        return url || ''
+      } catch (error) {
+        return ''
+      }
     },
     fileAccept() {
       return this.item.fileType.map(item => `.${item}`).join(',')

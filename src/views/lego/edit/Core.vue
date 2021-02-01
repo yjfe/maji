@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-10-15 10:05:53
+ * @LastEditTime: 2021-01-28 10:12:03
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -14,6 +14,10 @@
 </template>
 <script>
 import * as api from '@/views/lego/service'
+import { getComponentData } from '@/views/lego/utils'
+import { cloneDeep } from '@/utils'
+import validatorBase from '@/views/lego/edit/components/ValidatorDialog/data'
+import manageJson from '@/views/lego/funComponents/manage.json'
 import Preview from './components/Preview'
 import FunctionalZone from './components/FunctionalZone'
 import FormZone from './components/FormZone'
@@ -69,11 +73,7 @@ export default {
         }
       } else {
         // 默认新增情况初始化
-        this.$store.dispatch('manage/setLegoInit', {
-          floorList: [], 
-          idModule: {}, 
-          pagesModuleId: ''
-        })
+        this.$store.dispatch('manage/setLegoInit', this.getInitData())
         this.$nextTick(() => {
           this.$emit('savePagesModuleId', this.pageType)
         })
@@ -134,6 +134,124 @@ export default {
      */
     handleEditModule(item) {
       this.$refs.Preview.handleEditModule(item)
+    },
+    /**
+     * @msg: 初始化数据的快速添加 对应页面创建的专业模式 
+     * @return: 初始化数据
+     */
+    getInitData() {
+      // 获取缓存
+      let data = window.sessionStorage.getItem('quickCreate')
+      // 删除缓存
+      window.sessionStorage.removeItem('quickCreate')
+      if (data && this.$route.query.expert === 'true') {
+        data = JSON.parse(data)
+        let initCode
+        switch (this.pageType) {
+          case 'PagesList': // list 的初始化数据解析
+            initCode = this.getListInitData(data)
+            break
+          case 'PagesDetail': // detail 的初始化数据解析
+            initCode = this.getDetailInitData(data)
+            break
+          case 'PagesForm': // form 的初始化数据解析
+            initCode = this.getFormInitData(data)
+            break
+          default:
+            break
+        }
+        return {
+          floorList: initCode.floorList,
+          idModule: initCode.idModule,
+          pagesModuleId: ''
+        }
+      }
+      return {
+        floorList: [], 
+        idModule: {}, 
+        pagesModuleId: ''
+      }
+    },
+    /**
+     * @msg: 初始化数据的快速添加 list 
+     * @param {array} list  
+     * @return: 初始化数据
+     */
+    getListInitData(list = []) {
+      const idModule = {}
+      // 搜索框的
+      const searchModule = getComponentData('Search')
+      // 表格的
+      const tableModule = getComponentData('Table')
+      list.forEach((item) => {
+        const { id, baseData } = getComponentData('Input')
+        baseData.key = item.key
+        baseData.label = item.label
+        idModule[id] = Object.assign(baseData, cloneDeep(validatorBase), { id, parent: searchModule.id })
+        // 给表格塞数据
+        tableModule.baseData.layout.push({
+          label: item.label,
+          key: item.key,
+          fixed: false,
+          openType: 0
+        })
+        // 给搜索塞数据
+        searchModule.baseData.layout.push({
+          col: 6,
+          module: id,
+          type: manageJson.componentsInfo.Input.name
+        })
+      })
+      // 删除第一个初始化数据
+      tableModule.baseData.layout.splice(0, 1)
+      // 删除第一个初始化数据
+      searchModule.baseData.layout.splice(0, 1)
+      idModule[searchModule.id] = Object.assign(searchModule.baseData, { id: searchModule.id })
+      idModule[tableModule.id] = Object.assign(tableModule.baseData, { id: tableModule.id })
+      return {
+        idModule,
+        floorList: [searchModule.id, tableModule.id]
+      }
+    },
+    /**
+     * @msg: 初始化数据的快速添加 form  
+     * @param {array} list  
+     * @return: 初始化数据
+     */
+    getFormInitData(list = []) {
+      const idModule = {}
+      const floorList = []
+      list.forEach((item) => {
+        const { id, baseData } = getComponentData('Input')
+        baseData.key = item.key
+        baseData.label = item.label
+        idModule[id] = Object.assign(baseData, cloneDeep(validatorBase), { id })
+        floorList.push(id)
+      })
+      return {
+        idModule,
+        floorList
+      }
+    },
+    /**
+     * @msg: 初始化数据的快速添加  detail 
+     * @param {array} list  
+     * @return: 初始化数据
+     */
+    getDetailInitData(list = []) {
+      const idModule = {}
+      const floorList = []
+      list.forEach((item) => {
+        const { id, baseData } = getComponentData('DetailText')
+        baseData.key = item.key
+        baseData.label = item.label
+        idModule[id] = Object.assign(baseData, cloneDeep(validatorBase), { id })
+        floorList.push(id)
+      })
+      return {
+        idModule,
+        floorList
+      }
     }
   }
 }

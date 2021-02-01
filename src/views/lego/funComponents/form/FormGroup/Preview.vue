@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-12-07 10:43:56
+ * @LastEditTime: 2021-01-28 09:53:30
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -156,8 +156,9 @@ export default {
      */
     handleDragEnd() {
       if (this.moveStart !== this.moveEnd) {
-        const li = this.dataList.splice(this.moveStart, 1)
-        this.dataList.splice(this.moveEnd, 0, li[0])
+        // console.log(this.pageData)
+        const li = this.parentData[this.propKey].splice(this.moveStart, 1)
+        this.parentData[this.propKey].splice(this.moveEnd, 0, li[0])
       }
     }
   }

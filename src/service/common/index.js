@@ -2,10 +2,9 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:01
- * @LastEditTime: 2020-12-09 11:26:52
+ * @LastEditTime: 2021-02-01 10:46:23
  * @LastEditors: Please set LastEditors
  */
-import { map } from 'rxjs/operators'
 import * as httpAgent from '@/utils/http'
 
 /**
@@ -15,13 +14,13 @@ import * as httpAgent from '@/utils/http'
  * @returns
  */
 export function getButtonAuth(params, options) {
-  return httpAgent.GET('txy/admin/buttonAll.json', params, options).pipe(
-    map((res) => {
+  return new Promise((resolve) => {
+    httpAgent.GET('/automatedadmin/admin/buttonAll.json', params, options).then((res) => {
       const obj = {}
       res.data.forEach((item) => { obj[item] = true })
-      return obj
+      resolve(obj)
     })
-  )
+  })
 }
 
 /**

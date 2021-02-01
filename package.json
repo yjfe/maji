@@ -17,6 +17,7 @@
     "js-md5": "^0.7.3",
     "monaco-editor": "^0.20.0",
     "monaco-editor-webpack-plugin": "^1.9.0",
+    "nanoid": "^3.1.20",
     "request": "^2.88.0",
     "rxjs": "^6.5.2",
     "schemajs": "^0.1.14",

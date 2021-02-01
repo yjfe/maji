@@ -2,19 +2,27 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:17:59
- * @LastEditTime: 2020-12-09 11:56:37
+ * @LastEditTime: 2021-02-01 10:53:09
  * @LastEditors: Please set LastEditors
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-// import errorRouter from './router-error'
-import legoEditRouter from './router-legoEdit' // 编辑区 有菜单
+import store from '../store'
 import legoPreviewRouter from './router-legoPreview' // 预览区 无菜单
+import legoEditRouter from './router-legoEdit' // 编辑区 有菜单
 import pageManageRouter from './router-pageManage'
 import configRouter from './router-config'
 import iframeRouter from './router-iframe'
 
+// 获取原型对象上的push函数
+const originalPush = Router.prototype.push
+// 修改原型对象中的push方法
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 Vue.use(Router)
+
 export default new Router({
   mode: 'history',
   base: '/generate',
@@ -59,7 +67,12 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      redirect: '/config',
+      redirect: () => {
+        if (store.getters.userInfo.userName) {
+          return '/config'
+        }
+        return '/login'
+      },
       component: () => import(/* webpackChunkName: "document-index" */ '@/views/index'),
       children: [ 
         ...pageManageRouter,

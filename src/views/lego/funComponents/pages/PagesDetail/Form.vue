@@ -2,16 +2,16 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-08-28 15:50:51
+ * @LastEditTime: 2021-01-25 14:32:45
  * @LastEditors: Please set LastEditors
  -->
 <template>
   <el-form label-width="120px" :rules="rules" :model="item" ref="form">
-    <ComponentFormHeadTabs :hasAdvanced="falsComponentFormHeadTabse">
+    <ComponentFormHeadTabs :hasAdvanced="false">
       <template slot="base">
         <FoldWraper label="基础信息" :level="1">
-          <el-form-item label="页面标题：">
-            <el-input v-model="item.title" prop="title"/>
+          <el-form-item label="页面标题：" prop="title">
+            <el-input v-model="item.title" />
           </el-form-item>
         </FoldWraper>
         <FoldWraper label="样式配置" :level="1">

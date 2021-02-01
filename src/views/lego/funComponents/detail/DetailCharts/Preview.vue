@@ -310,7 +310,6 @@ export default {
      * @Date: 2019-11-19 18:27:51
      * @method: 给图表绑定点击事件
      * @param {type} 
-     * 
      * @LastEditTime: 
      * @LastEditors: Please set LastEditors
      */

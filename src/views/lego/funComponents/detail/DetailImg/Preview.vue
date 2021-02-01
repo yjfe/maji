@@ -2,11 +2,11 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-12-03 16:07:48
+ * @LastEditTime: 2020-12-17 15:16:48
  * @LastEditors: Please set LastEditors
  -->
 <template>
-  <el-form-item :prop="`${item.id}.value`" :label="`${item.label}：`" :rules="item.validator.rules">
+  <el-form-item :label="`${item.label}：`" :rules="item.validator.rules">
     <el-image
       v-for="list in imgList"
       :key="list"

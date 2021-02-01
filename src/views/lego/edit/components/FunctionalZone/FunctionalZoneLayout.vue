@@ -2,7 +2,7 @@
  * @Description:
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-10-26 11:44:47
+ * @LastEditTime: 2021-01-25 15:23:08
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -88,8 +88,7 @@ export default {
      */
     handleClick(item) {
       try {
-        const id = this.getComponentId(item)
-        const baseData = getComponentData(item) 
+        const { id, baseData } = getComponentData(item)
         const addData = {
           data: Object.assign(baseData, cloneDeep(validatorBase), { id }),
           id

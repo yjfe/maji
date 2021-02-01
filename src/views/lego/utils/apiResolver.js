@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-08-26 15:43:30
- * @LastEditTime: 2020-12-01 15:11:37
+ * @LastEditTime: 2021-01-12 15:28:16
  * @LastEditors: Please set LastEditors
  */
 window.envApiConfig = {}
@@ -11,7 +11,8 @@ window.envApiConfig = {}
 const optionKey = {
   XTimeout: 'timeout',
   XCache: 'cache',
-  XType: 'type'
+  XType: 'type',
+  XMethod: 'JDY'
 }
 
 /**

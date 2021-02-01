@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-10-26 18:09:46
+ * @LastEditTime: 2021-01-25 15:09:10
  * @LastEditors: Please set LastEditors
  */
 export default {
@@ -25,5 +25,18 @@ export default {
       ]
     }
   },
-  rules: {}
+  rules: {},
+  moduleFun: [
+    'Input', 
+    'Radio', 
+    'Checkbox', 
+    'Select', 
+    'TimePick', 
+    'DatePick', 
+    // 'DateTimePick',
+    'InputNumber', 
+    'InputCode', 
+    'AddressCascader',
+    'Cascader'
+  ]
 }

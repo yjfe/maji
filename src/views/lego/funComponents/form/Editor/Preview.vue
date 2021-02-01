@@ -67,7 +67,6 @@ export default {
 <style lang="less">
   .lego-priview-input{
     .el-input-group__append{
-      // 
       // 穿透el-input修改样式
       // line-height 设置了数值，因此可能需要到时修改
       background-color: #F5F7FA;

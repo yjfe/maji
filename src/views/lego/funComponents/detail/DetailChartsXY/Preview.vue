@@ -229,7 +229,7 @@ export default {
         // 默认添加缩放
         Object.assign(option, { dataZoom }) 
       }
-      console.log(option)
+      // console.log(option)
       this.createChart(option)
     },
     /**
@@ -362,7 +362,6 @@ export default {
      * @Date: 2019-11-19 18:27:51
      * @method: 给图表绑定点击事件
      * @param {type} 
-     * 
      * @LastEditTime: 
      * @LastEditors: Please set LastEditors
      */

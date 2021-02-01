@@ -6,22 +6,11 @@
 
 <script>
 import Vue from 'vue'
-import Preview from '../../Preview'
+import Image from './Elimage'
 
 export default {
   componentName: 'PreviewBox',
   props: {
-    /**
-     * @prop {Boolean} indicator 开启底部缩略图  默认: true
-     */
-    indicator: {
-      type: Boolean,
-      default: true
-    }
-    // only: {
-    //   type: Boolean,
-    //   default: false
-    // }
   },
   methods: {
     handleClick(e) {
@@ -30,7 +19,6 @@ export default {
         e.stopPropagation()
         const list = []
         let index = 0
-
         Array.from(this.$el.querySelectorAll('img')).forEach((item, i) => {
           if (item === e.target) {
             index = i
@@ -39,11 +27,11 @@ export default {
         })
         const node = document.createElement('div')
         document.body.appendChild(node)
-        // eslint-disable-next-line no-new
+        // eslint-disable-next-line
         new Vue({
           el: node,
           components: {
-            Preview
+            XElImage: Image
           },
           data: () => ({
             visible: true,
@@ -52,19 +40,24 @@ export default {
           }),
           mounted() {
             this.index = index
+            this.$nextTick(() => {
+              this.$refs.elImage.clickHandler()
+              // handleClose = this.handleClose
+            })
           },
           methods: {
             handleClose() {
               this.$destroy()
+              const allElImage = document.querySelectorAll('.el-image')
+              allElImage[allElImage.length - 1].remove()
             }
           },
           render(h) {
-            return h('Preview', {
+            return h('XElImage', {
+              ref: 'elImage',
               props: {
-                visible: this.visible,
-                index: this.index,
-                list: this.list,
-                indicator: this.indicator
+                src: this.list[this.index],
+                'preview-src-list': this.list
               },
               on: {
                 close: this.handleClose

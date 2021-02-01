@@ -3,7 +3,7 @@
  * @param {type} 
  * @return: 
  */
-
+import store from '@/store'
 import pagesUpdate from '@/views/lego/funComponents/pages/historyDataUpdate'
 import checkboxUpdate from '@/views/lego/funComponents/form/Checkbox/historyDataUpdate'
 
@@ -36,6 +36,31 @@ export default function (modules) {
       if (data.componentEvent.componentAfterAjax) {
         data.componentEvent.componentAfterSend = data.componentEvent.componentAfterAjax
         delete data.componentEvent.componentAfterAjax
+      }
+    }
+    // TODO: 执行时序问题，单体组件对象需要获取全局组件配置
+    if (data.relational && Array.isArray(data.relational)) {
+      let renderRule = ''
+      const ruleEnums = {
+        and: '&&',
+        or: '||'
+      }
+      data.relational.forEach((item, index) => {
+        // 可能在这可能在那
+        const relItem = modules[item.id] || store.getters['manage/idModule'][item.id]
+        if (relItem) {
+          const { key } = relItem
+          let rule
+          if (relItem.type === 'Tabs') {
+            rule = `this.idModule['${item.id}'].value==${item.value}`
+          } else {
+            rule = `this.pageData.${key}==${item.value}`
+          }
+          renderRule += `${index > 0 ? ruleEnums[item.rule || 'and'] : ''}${rule}`
+        }
+      })
+      if (renderRule) {
+        data.renderRule = renderRule
       }
     }
   })

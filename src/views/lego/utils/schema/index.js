@@ -18,7 +18,8 @@ class Schema {
   ruleType(rule) {
     if (typeof rule === 'string') {
       return {
-        type: rule
+        type: rule,
+        default: rule === 'string' ? '' : undefined
       }
     }
     return rule

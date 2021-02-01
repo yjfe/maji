@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-01-24 14:15:10
- * @LastEditTime: 2020-12-10 16:00:50
+ * @LastEditTime: 2020-12-09 11:05:23
  * @LastEditors: Please set LastEditors
  */
 import Vue from 'vue'
@@ -40,7 +40,7 @@ Object.keys(filters).forEach((key) => {
 
 // 挂载腾讯有jssdk
 window.tcbApp = cloudbase.init({
-  env: '' // 腾讯云开发环境id
+  env: 'node-generate-7glxke4qc18d7586'
 })
 
 // 为了代码组件使用一些全局方法

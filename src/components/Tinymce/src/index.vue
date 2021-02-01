@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2018-10-29 16:30:28
- * @LastEditTime: 2020-11-30 14:23:07
+ * @LastEditTime: 2021-01-25 15:23:27
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -108,7 +108,6 @@ export default {
           })
         }
       })
-      console.log(setting)
       window.tinymce.init(setting)
       // window.tinymce.init({
       //   selector: '#aaaa',

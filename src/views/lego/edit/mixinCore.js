@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-29 10:55:24
- * @LastEditTime: 2020-11-08 10:48:59
+ * @LastEditTime: 2021-01-21 16:05:39
  * @LastEditors: Please set LastEditors
  */
 import { mapGetters } from 'vuex'
@@ -55,9 +55,8 @@ export default {
      */
     savePagesModuleId(item) {
       try {
-        const id = `${item}${new Date().getTime()}`
         // eslint-disable-next-line 
-        const baseData = getComponentData(item)
+        const { id, baseData } = getComponentData(item)
         this.$store.dispatch('manage/addModule', { 
           id, 
           data: Object.assign(baseData, { id })

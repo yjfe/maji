@@ -8,8 +8,8 @@
 import data from '../../form/Radio/data'
 
 export default {
-  baseData: {
-    ...data.baseData,
+  schema: {
+    ...data.schema,
     type: 'DetailRadio'
   },
   rules: data.rules

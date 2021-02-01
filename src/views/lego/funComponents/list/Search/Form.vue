@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-08-28 16:06:28
+ * @LastEditTime: 2021-01-25 15:08:59
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -116,19 +116,7 @@ export default {
   },
   data() {
     return {
-      moduleFun: [
-        'Input', 
-        'Radio', 
-        'Checkbox', 
-        'Select', 
-        'TimePick', 
-        'DatePick', 
-        // 'DateTimePick',
-        'InputNumber', 
-        'InputCode', 
-        'AddressCascader',
-        'Cascader'
-      ],
+      moduleFun: baseData.moduleFun,
       index: 0,
       rules: baseData.rules,
       searchComponents: [

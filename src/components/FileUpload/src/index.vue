@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2018-10-29 16:30:28
- * @LastEditTime: 2020-11-26 16:08:27
+ * @LastEditTime: 2021-01-20 15:50:10
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -88,8 +88,12 @@ export default {
   },
   computed: {
     uploadUrl: () => {
-      const prefix = process.env.NODE_ENV === 'development' ? '/api' : ''
-      return `${prefix}${this.action}`
+      try {
+        const prefix = process.env.NODE_ENV === 'development' ? '/api' : ''
+        return `${prefix}${this.action}`
+      } catch (error) {
+        return ''
+      }
     }
   },
   data() {

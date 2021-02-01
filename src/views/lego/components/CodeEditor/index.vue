@@ -14,6 +14,10 @@ export default {
       type: String,
       default: 'html'
     },
+    theme: { // 颜色主题 默认 vs 高亮 hc-black  深色 vs-dark
+      type: String,
+      default: 'vs'
+    },
     editorOptions: {
       type: Object,
       default: () => ({
@@ -33,21 +37,6 @@ export default {
   },
   data() {
     return {
-      themeOption: [
-        {
-          value: 'vs',
-          label: '默认'
-        },
-        {
-          value: 'hc-black',
-          label: '高亮'
-        },
-        {
-          value: 'vs-dark',
-          label: '深色'
-        }
-      ],
-      theme: 'hc-black',
       codesCopy: null // 内容备份
     }
   },
@@ -61,7 +50,7 @@ export default {
       self.monacoEditor = monaco.editor.create(self.$refs.container, {
         value: self.codesCopy || self.codes,
         language: self.language,
-        // theme: self.theme, // vs, hc-black, or vs-dark
+        theme: self.theme, // vs, hc-black, or vs-dark
         editorOptions: self.editorOptions
       })
       self.$emit('onMounted', self.monacoEditor) // 编辑器创建完成回调

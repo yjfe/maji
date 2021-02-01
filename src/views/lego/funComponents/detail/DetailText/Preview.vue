@@ -2,11 +2,11 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-09-29 10:17:00
+ * @LastEditTime: 2020-12-17 15:16:11
  * @LastEditors: Please set LastEditors
  -->
 <template>
-  <el-form-item :prop="`${item.id}.value`" :label="`${item.label}：`" :rules="item.validator.rules">
+  <el-form-item :label="`${item.label}：`" :rules="item.validator.rules">
     <span v-html="text" />
   </el-form-item>
 </template>

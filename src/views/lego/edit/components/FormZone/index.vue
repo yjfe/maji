@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-11-08 17:10:46
+ * @LastEditTime: 2021-02-01 10:58:20
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -21,7 +21,13 @@
       <div class="form-zone__form">
         <template v-if="activeId">
           <div class="form-zone__comId">当前组件ID：
-            <span>{{activeId}} {{componentsInfo[nowEditData.type].name}} 组件内容配置</span>
+            <span>{{activeId}} {{componentsInfo[nowEditData.type].name}} </span>
+            <el-button 
+              v-if="hasChange"
+              class="change-component" 
+              size="mini"
+              type="text"
+              @click="handleChangeComponent">切换组件</el-button>
           </div>
           <FormZoneNow ref="FormZoneNow"  :item="nowEditData" :key="activeId">
           </FormZoneNow>
@@ -39,6 +45,7 @@ import FoldWraper from '@/views/lego/components/FoldWraper'
 import ComponentFormHeadTabs from '@/views/lego/components/ComponentFormHeadTabs'
 import CodePointEvent from '@/views/lego/components/CodePointEvent'
 import { getComponentFile } from '@/views/lego/utils'
+import SearchBaseData from '@/views/lego/funComponents/list/Search/data'
 
 export default {
   computed: {
@@ -52,6 +59,9 @@ export default {
   },
   data() {
     return {
+      changeFormType: [...manageJson.detailItems, ...manageJson.formItems],
+      changeDetailType: manageJson.detailItems,
+      hasChange: false,
       componentsInfo: manageJson.componentsInfo,
       nowEditData: {},
       tabsActive: 'page'
@@ -95,6 +105,7 @@ export default {
           'FormZoneNow', 
           getComponentFile(this.idModule[item].type, 'Form')
         )
+        this.hasChange = this.checkHasChangeComponent(this.idModule[item].type)
       } catch (error) {
         console.error(`找不到组件: ${item}`)
       }
@@ -143,6 +154,122 @@ export default {
           break
       }
       this.$store.dispatch('manage/setActiveId', moduleId)
+    },
+    /**
+     * @Date: 2021-01-20 16:51:54
+     * @method: 检测组件是否属于表单类型，显示更换组件按钮
+     * @param {*} type
+     * @return {*}
+     * @Author: yamanashi12（yamanashi12@qq.com）
+     */
+    checkHasChangeComponent(type) {
+      return this.changeFormType.indexOf(type) >= 0
+    },
+    /**
+     * @Date: 2021-01-20 16:51:54
+     * @method: 点击按钮操作，打开选择框
+     * @param {*} type
+     * @return {*}
+     * @Author: yamanashi12（yamanashi12@qq.com）
+     */
+    handleChangeComponent() {
+      let fun
+      if (this.nowEditData.parent && /^Search/.test(this.nowEditData.parent)) {
+        // 在搜索框的
+        fun = SearchBaseData.moduleFun
+      } else if (/detail/.test(this.$route.path)) { // 在详情页的
+        fun = this.changeDetailType
+      } else { // 在表单页的
+        fun = this.changeFormType
+      }
+      const node = document.createElement('div')
+      const callback = this.changeComponentData
+      document.body.appendChild(node)
+      new Vue({ // eslint-disable-line
+        el: node,
+        components: {
+          AddModuleDialog: () => import('@/views/lego/edit/components/AddModuleDialog')
+        },
+        data() {
+          return {
+            moduleFun: fun
+          }
+        },
+        mounted() {
+          setTimeout(() => {
+            this.$refs.AddModuleDialog.open()
+          }, 0)
+        },
+        methods: {
+          handleClose() {
+            this.$destroy()
+          },
+          handleAddModule(res) {
+            callback(res)
+          }
+        },
+        render() {
+          return <AddModuleDialog ref="AddModuleDialog" 
+            fun={this.moduleFun}
+            onSelect={this.handleAddModule} />
+        }
+      })
+    },
+    /**
+     * @Date: 2021-01-20 16:51:54
+     * @method: 点击按钮操作，打开选择框
+     * @param {*} type
+     * @return {*}
+     * @Author: yamanashi12（yamanashi12@qq.com）
+     */
+    changeComponentData(newModel) {
+      const noKey = ['id', 'type', 'value', 'validator', 'styles', 'componentEvent']
+      const { id, data } = newModel
+      Object.keys(data).forEach((key) => {
+        if (this.nowEditData[key] && (noKey.indexOf(key) === -1)) {
+          data[key] = this.nowEditData[key]
+        }
+      })
+      // 嵌套关系的保留
+      if (this.nowEditData.parent) {
+        data.parent = this.nowEditData.parent
+      }
+      this.setComponent(id, data)
+    },
+    /**
+     * @Date: 2021-01-20 16:51:54
+     * @method: 对组件数据替换，从vuex
+     * @param {*} type
+     * @return {*}
+     * @Author: yamanashi12（yamanashi12@qq.com）
+     */
+    setComponent(newId, data) {
+      const nowId = this.nowEditData.id
+      // 加入vuex 新增模块对象
+      this.$store.dispatch('manage/addModule', { 
+        data: { ...data, id: newId },
+        id: newId 
+      })
+      // 判断父级更新
+      if (this.nowEditData.parent) {
+        // 存在父级，更换组件引用关系
+        const parentData = this.idModule[this.nowEditData.parent]
+        // 新数据的处理，通过正则处理上级的组件id和名称
+        const newParentData = JSON.parse(JSON.stringify(parentData)
+          .replace(nowId, newId)
+          .replace(manageJson.componentsInfo[this.nowEditData.type].name, manageJson.componentsInfo[data.type].name))
+        // 暴力点的赋值，使用vuex数据监听不到变化
+        Object.keys(newParentData).forEach(key => this.$set(parentData, key, newParentData[key]))
+      } else {
+        // 不存在父级，从楼层数据修改
+        const index = this.floorList.indexOf(nowId)
+        this.$set(this.floorList, index, newId)
+      }
+      // 删除编辑前的对象
+      this.$store.dispatch('manage/removeModule', { 
+        module: nowId,
+        go: newId
+      })
     }
   }
 }

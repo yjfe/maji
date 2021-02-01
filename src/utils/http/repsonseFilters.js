@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:17:53
- * @LastEditTime: 2020-11-26 14:53:00
+ * @LastEditTime: 2021-01-19 16:37:02
  * @LastEditors: Please set LastEditors
  */
 import { Message } from 'element-ui'
@@ -17,7 +17,8 @@ const loginLink = '/login.index'
  * @param {*} res
  * @returns
  */
-export default function filterResponse(options = {}, res = {}) {
+export default function filterResponse(config = {}, res = {}) {
+  const { options = {} } = config
   if (options.noCheck) { 
     // 忽略过滤器
     return {

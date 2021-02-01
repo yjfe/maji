@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import { customAlphabet } from 'nanoid'
 import router from '@/routers'
 import store from '@/store'
 import { cloneDeep } from '@/utils'
@@ -42,15 +43,42 @@ export function schemaData(data) {
  * @return: 配置数据或组件
  */
 export function getComponentData(componentName) {
+  const id = `${componentName}${customAlphabet('1234567890', 10)()}`
   // 从schema初始化对数据
   const fromSchema = schemaData({ type: componentName })
   // 兼容未补全schema的组件
   if (Object.keys(fromSchema).length > 1) {   
-    return fromSchema
+    return {
+      baseData: fromSchema,
+      id
+    }
   }
   // 返回基础信息
-  return getComponentFile(componentName, 'data').baseData
+  return {
+    baseData: getComponentFile(componentName, 'data').baseData,
+    id
+  }
 }
+
+/**
+ * @description: 打开选择组件框
+ * @param {type}componentName 组件名
+ * @param {type}fileName 文件名 
+ * @return: 配置数据或组件
+ */
+export function getComponentBaseData(componentName, fileName) {
+  const path = `${manageJson.componentsInfo[componentName].type}/${componentName}`
+  // 完整数据
+  if (fileName === 'data') {
+    return cloneDeep(require(`@/views/lego/funComponents/${path}/data.js`).default)
+  } 
+  // 取schema
+  if (fileName === 'schema') {
+    return require(`@/views/lego/funComponents/${path}/data.js`).default.schema || {}
+  }
+  return require(`@/views/lego/funComponents/${path}/${fileName}.vue`).default
+}
+
 
 // 获取路由参数的移除无用参数
 export function getRouteQuery({ ...query }) {

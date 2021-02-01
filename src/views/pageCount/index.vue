@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-03-23 17:32:19
- * @LastEditTime: 2020-12-08 14:57:48
+ * @LastEditTime: 2021-01-25 15:24:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \generate\src\views\pageCount\index.vue
@@ -23,6 +23,7 @@
     <ContentBox label="统计组件使用情况">
       <el-row>
         <el-col :span="8">迭代页面: {{updateNum}}</el-col>
+        <el-col :span="16">参与人: {{author}}</el-col>
       </el-row>
       <el-row>
         <el-col :span="8">列表页: {{showData.pageList}}</el-col>
@@ -48,7 +49,8 @@ export default {
       showData: {},
       time: [],
       createNum: 0,
-      updateNum: 0
+      updateNum: 0,
+      author: {}
     }
   },
   methods: {
@@ -87,6 +89,11 @@ export default {
               })
               // 输出时间和id，方便
               console.log(item.data.pageManageId, item.data.modifyTime)
+              if (this.author[item.data.createName]) {
+                this.author[item.data.createName] += 1
+              } else {
+                this.author[item.data.createName] = 1
+              }
             }
           } catch (_) {
             return false

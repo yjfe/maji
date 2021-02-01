@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-12-04 15:42:25
+ * @LastEditTime: 2020-12-11 09:46:24
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -88,7 +88,6 @@ export default {
 <style lang="less">
   .lego-priview-input{
     .el-input-group__append{
-      // 
       // 穿透el-input修改样式
       // line-height 设置了数值，因此可能需要到时修改
       background-color: #F5F7FA;

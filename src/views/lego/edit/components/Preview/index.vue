@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yamanashi12
  * @Date: 2019-05-10 10:18:19
- * @LastEditTime: 2020-12-08 14:31:32
+ * @LastEditTime: 2021-01-21 16:06:06
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -119,9 +119,7 @@ export default {
      */
     addModule(item, index) {
       try {
-        const id = `${item}${new Date().getTime()}`
-        // eslint-disable-next-line 
-        const baseData = getComponentData(item)
+        const { id, baseData } = getComponentData(item)
         this.$store.dispatch('manage/addFloorList', { 
           id, 
           data: Object.assign(baseData, cloneDeep(validatorBase), { id }),

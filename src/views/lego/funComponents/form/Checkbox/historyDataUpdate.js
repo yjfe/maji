@@ -16,14 +16,19 @@ export default function (data = {}) {
     }
     return `${value}`
   }
-  try {
-    if (!store.getters['manage/isEdit']) {
-      data.value = formatValue(data.value, data.valueType)
-      if (data.optionsType === 2) {
-        data.options.forEach(item => item.value = formatValue(item.value, data.valueType))
+  if (!store.getters['manage/isEdit']) {
+    // checkbox select 组件是多选的
+    if (Array.isArray(data.value) || /Checkbox/.test(data.type) || data.multiple) {
+      try {
+        data.value = data.value.map(item => formatValue(item, data.type))
+      } catch (error) {
+        data.value = []
       }
+    } else {
+      data.value = formatValue(data.value, data.valueType)
     }
-  } catch (error) {
-    data.action = []
+    if (data.optionsType === 2) {
+      data.options.forEach(item => item.value = formatValue(item.value, data.valueType))
+    }
   }
 }
